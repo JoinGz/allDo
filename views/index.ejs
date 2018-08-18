@@ -1,12 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-  index
-</body>
-</html>
+<% include _header %>
+  <div class="textBox">
+    <span>Welcome!</span>
+    <% if (!user){ %>
+      <a href="/signup">注册</a>
+      <% } else { %>
+        <a href="/edit"> hello,<%= user.name() %></a>
+        <a href="/logout">退出</a>
+     <% } %>
+        <a href="/login">登录</a>
+  </div>
+  <% if (alluser){ %>
+    <% alluser.forEach(v=>{ %>
+      <div class="textBox">
+        <p>
+          用户名：<a href="/edit/<%=v.username%>">
+            <%=v.username%> 
+          </a>
+        </p>
+        <% if (v.displayname){ %>
+          <p>昵称：<%=v.displayname%> </p>
+        <% } %>
+        <% if (v.intro){ %>
+          <p>个性签名：<%=v.intro%> </p>
+        <% } %>
+      </div>
+      <% }) %>
+        <% } %>
+
+          <% include _footer %>

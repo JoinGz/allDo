@@ -1,0 +1,15 @@
+<% include _header %>
+  <div class="textBox">
+    欢迎注册！
+  </div>
+  <% if(err){%>
+    <div class="err">
+      <%=err %>
+    </div>
+    <%}%>
+  <form action="/signup" method="POST">
+    用户名：<input type="text" name="username" >
+    密码： <input type="password" name="password">
+    <input type="submit" value="确定">
+  </form>
+<% include _footer %>

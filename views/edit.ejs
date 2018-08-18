@@ -1,0 +1,36 @@
+<% include _header %>
+  <!-- 返回的数组 -->
+  <% if (edit){ %>
+    <% edit.forEach(v=>{ %>
+      <div class="textBox">
+        <p>
+          用户名：
+          <%=v.username%>
+            </a>
+        </p>
+        <% if (v.displayname){ %>
+          <p>昵称：
+            <%=v.displayname%>
+          </p>
+          <% } %>
+            <% if (v.intro){ %>
+              <p>个性签名：
+                <%=v.intro%>
+              </p>
+              <% } %>
+      </div>
+      <% }) %>
+        <% } %>
+          <% if(user && edit ){%>
+            <!-- _id是个对象 -->
+            <% if(String(user._id) === String(edit[0]._id) ){%>
+            <p>修改</p>
+            <form action="/edit" method="POST">
+              昵称：
+              <input type="text" name="dname"> 简介：
+              <input type="text" name="intro">
+              <input type="submit" value="确定">
+            </form>
+            <%}%>
+            <%}%>
+              <% include _footer %>

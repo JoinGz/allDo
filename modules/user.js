@@ -8,8 +8,7 @@ let userTable = mongoose.Schema({
   intro: String,
   displayName: String
 })
-let User = mongoose.model('allUser', userTable)
-userTable.methods.name = () => {
+userTable.methods.name = function () {
   return this.displayName || this.username
 }
 userTable.pre('save', function(done)  {
@@ -33,4 +32,10 @@ userTable.pre('save', function(done)  {
     })
   })
 })
+userTable.methods.checkPassword = function (guess, done) {
+  bcrypt.compare(guess, this.password, function(err, isMatch) {
+    done(err, isMatch)
+  })
+}
+let User = mongoose.model('allUser', userTable)
 module.exports = User
